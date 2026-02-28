@@ -1,0 +1,136 @@
+# =============================================================================
+# Go
+# =============================================================================
+
+# Compiled binaries and build output
+/bin/
+/dist/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go binary outputs for cmd targets
+/cmd/api/api
+/cmd/agent/agent
+
+# Test artifacts
+*.test
+*.out
+coverage.out
+coverage.html
+*.prof
+
+# Go workspace file (optional local overrides)
+go.work
+go.work.sum
+
+# =============================================================================
+# Environment / secrets
+# =============================================================================
+
+.env
+.env.local
+.env.*.local
+# Keep .env.example — it documents required vars and is safe to commit
+
+# =============================================================================
+# Web App (React / TypeScript / Vite)
+# =============================================================================
+
+web/node_modules/
+web/dist/
+web/build/
+web/.vite/
+web/.next/
+web/coverage/
+web/.env
+web/.env.local
+web/.env.*.local
+
+# npm / pnpm / yarn lock files generated locally (keep package-lock.json / yarn.lock)
+web/.npm/
+web/.pnp.*
+web/.yarn/
+
+# =============================================================================
+# sqlc generated code
+# sqlc output SHOULD be committed — do not ignore web/
+# =============================================================================
+# (intentionally left empty — generated files are committed)
+
+# =============================================================================
+# Docker
+# =============================================================================
+
+# Named Docker volume data directories if bind-mounted locally
+docker-volumes/
+.docker/
+
+# =============================================================================
+# Migrations tooling
+# =============================================================================
+
+# golang-migrate downloaded binary (if stored locally)
+migrate
+
+# =============================================================================
+# macOS
+# =============================================================================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# =============================================================================
+# IDE — VSCode
+# =============================================================================
+
+.vscode/
+*.code-workspace
+# Keep .vscode/extensions.json and .vscode/settings.json if your team shares them.
+# Re-add with: !.vscode/extensions.json
+
+# =============================================================================
+# IDE — JetBrains (GoLand, WebStorm, etc.)
+# =============================================================================
+
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# =============================================================================
+# IDE — Cursor
+# =============================================================================
+
+.cursor/
+.cursorignore
+.cursorules
+
+# =============================================================================
+# Misc
+# =============================================================================
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*~
+
+# Log files
+*.log
+logs/
+
+# Certificates generated locally for mTLS dev
+certs/
+*.pem
+*.key
+*.crt
+*.csr
+# Keep committed example/placeholder certs if any — re-add with !certs/example.pem

@@ -8,6 +8,7 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
+	"slices"
 	"time"
 
 	"github.com/google/uuid"
@@ -133,12 +134,7 @@ func (s *Service) HasPermission(ctx context.Context, userID uuid.UUID, permKey s
 		}
 		s.cache.Set(userID, perms)
 	}
-	for _, p := range perms {
-		if p == permKey {
-			return true
-		}
-	}
-	return false
+	return slices.Contains(perms, permKey)
 }
 
 // VerifyToken validates a JWT and returns its claims.

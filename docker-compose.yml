@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: timescale/timescaledb:latest-pg15
+    container_name: yggdrasil-postgres
+    environment:
+      POSTGRES_USER: yggdrasil
+      POSTGRES_PASSWORD: yggdrasil
+      POSTGRES_DB: yggdrasil
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U yggdrasil"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - yggdrasil
+
+  nats:
+    image: nats:latest
+    container_name: yggdrasil-nats
+    ports:
+      - "4222:4222"
+      - "8222:8222"  # monitoring
+    healthcheck:
+      test: ["CMD", "nats", "-s", "localhost:4222", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - yggdrasil
+
+  # PgBouncer for connection pooling (optional, for production)
+  pgbouncer:
+    image: pgbouncer/pgbouncer:latest
+    container_name: yggdrasil-pgbouncer
+    environment:
+      DATABASE_URL: postgres://yggdrasil:yggdrasil@postgres:5432/yggdrasil
+      POOL_MODE: transaction
+      MAX_CLIENT_CONN: 100
+      DEFAULT_POOL_SIZE: 20
+    ports:
+      - "6432:5432"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - yggdrasil
+
+volumes:
+  postgres_data:
+
+networks:
+  yggdrasil:
+    driver: bridge

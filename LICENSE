@@ -1,0 +1,31 @@
+# License
+
+**This license is TBD (To Be Determined).**
+
+The project is intended to be open source, but the specific license has not yet been chosen.
+
+## Candidate Licenses
+
+Consider one of these common open-source licenses:
+
+### MIT License
+
+Permissive, simple, and business-friendly. Allows proprietary use, modification, and distribution.
+
+### Apache 2.0
+
+Similar to MIT but also provides an express grant of patent rights from contributors.
+
+### AGPL v3
+
+Stronger copyleft - ensures source code must be shared if the software is used as a service.
+
+---
+
+## For Contributors
+
+By contributing to Yggdrasil, you agree that your contributions will be licensed under the final chosen license once determined.
+
+---
+
+*This file will be updated once the license is finalized. If you have preferences or concerns about licensing, please open an issue to discuss.*
